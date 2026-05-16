@@ -6,7 +6,6 @@ services:
       - "${INPUT_DIR}:/app/input"     # входные видео будут доступны в /app/input
       - "${OUTPUT_DIR}:/app/output"   # результаты сохранятся в /app/output
     working_dir: /app
-    command: ["input/input.mp4", "output/output.avi", "output/results.csv", "--position-threshold", "100", "--area-ratio", "0.10", "--dim-ratio", "0.10"]
   dev:
     build: .
     entrypoint: []

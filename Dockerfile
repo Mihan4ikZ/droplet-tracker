@@ -60,4 +60,4 @@ WORKDIR /app
 COPY app/ .
 
 # 12. Команда, которая будет выполнена при запуске контейнера
-ENTRYPOINT ["python", "process_data.py"]
+ENTRYPOINT ["python", "main.py"]
