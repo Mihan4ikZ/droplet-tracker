@@ -1,7 +1,9 @@
+import sys
+
 import cv2
 import numpy as np
 import pandas as pd
-import sys
+
 
 def process_frame(frame):
     """Обрабатывает один кадр: находит капли, возвращает изображение, размеры и позиции."""
@@ -28,6 +30,7 @@ def process_frame(frame):
 
     return gray, sizes, positions
 
+
 def is_same_droplet(new_droplet, previous_droplet,
                     area_ratio=0.10, dim_ratio=0.10, position_threshold=100.0):
     """
@@ -45,10 +48,12 @@ def is_same_droplet(new_droplet, previous_droplet,
 
     position_distance = np.linalg.norm(np.array(new_droplet[3:]) - np.array(previous_droplet[3:]))
 
-    return (area_diff_ratio < area_ratio and
-            width_diff_ratio < dim_ratio and
-            height_diff_ratio < dim_ratio and
-            position_distance < position_threshold)
+    return (area_diff_ratio < area_ratio
+            and width_diff_ratio < dim_ratio
+            and height_diff_ratio < dim_ratio
+            and position_distance < position_threshold)
+
+
 def process_video(input_video, output_video, output_csv,
                   position_threshold=100.0, area_ratio=0.10, dim_ratio=0.10):
     """
@@ -137,10 +142,10 @@ def process_video(input_video, output_video, output_csv,
 
         previous_droplets = current_droplets.copy()
         previous_time = current_time
-        
+
         # Записываем обработанный кадр в выходной файл
         out.write(processed_frame)
-        
+
     # Освобождение ресурсов
     cap.release()
     out.release()
