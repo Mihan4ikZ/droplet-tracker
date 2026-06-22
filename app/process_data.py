@@ -143,8 +143,10 @@ def process_video(input_video, output_video, output_csv,
         previous_droplets = current_droplets.copy()
         previous_time = current_time
 
+        # Преобразуем серое изображение в цветное (3 канала) для записи
+        frame_to_write = cv2.cvtColor(processed_frame, cv2.COLOR_GRAY2BGR)
         # Записываем обработанный кадр в выходной файл
-        out.write(processed_frame)
+        out.write(frame_to_write)
 
     # Освобождение ресурсов
     cap.release()
